@@ -1,18 +1,41 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="theme-color" content="#F7B6C2" />
-    <meta name="description" content="Little Future — la plateforme intelligente pour crèches : éducation 3D, suivi santé, évaluation quotidienne, messagerie et bien plus." />
-    <title>{% block title %}Little Future — La crèche intelligente{% endblock %}</title>
+    <meta name="description" content="{% trans "Little Future — la plateforme intelligente pour crèches : éducation 3D, suivi santé, évaluation quotidienne, messagerie et bien plus." %}" />
+    <title>{% block title %}{% trans "Little Future — La crèche intelligente" %}{% endblock %}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <style>
+        /* Language switcher */
+        .lang-switcher { display: inline-flex; align-items: center; gap: 4px; margin: 0 8px; }
+        .lang-switcher button {
+            background: transparent; border: 1px solid rgba(0,0,0,0.15);
+            padding: 4px 10px; border-radius: 6px; cursor: pointer;
+            font-size: 14px; font-weight: 600; color: inherit;
+            transition: all 0.2s;
+        }
+        .lang-switcher button:hover { background: rgba(0,0,0,0.05); }
+        .lang-switcher button.active { background: #F7B6C2; color: #fff; border-color: #F7B6C2; }
+        .lang-globe { font-size: 16px; margin-inline-end: 4px; }
+
+        /* RTL adjustments */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Inter', sans-serif; }
+        html[dir="rtl"] .header-inner,
+        html[dir="rtl"] .footer-grid { direction: rtl; }
+        html[dir="rtl"] .brand em { font-style: normal; }
+        html[dir="rtl"] .nav-toggle { transform: scaleX(-1); }
+    </style>
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -23,20 +46,27 @@
                 <span class="brand-name">Little <em>Future</em></span>
             </a>
 
-            <nav class="primary-nav" aria-label="Navigation principale">
-                <a href="{% url 'home' %}#services">Services</a>
-                <a href="{% url 'course_catalog' %}">Cours 3D</a>
-                <a href="{% url 'home' %}#fonctionnalites">Fonctionnalités</a>
-                <a href="{% url 'home' %}#temoignages">Avis</a>
-                <a href="{% url 'home' %}#faq">FAQ</a>
+            <nav class="primary-nav" aria-label="{% trans 'Navigation principale' %}">
+                <a href="{% url 'home' %}#services">{% trans "Services" %}</a>
+                <a href="{% url 'course_catalog' %}">{% trans "Cours 3D" %}</a>
+                <a href="{% url 'home' %}#fonctionnalites">{% trans "Fonctionnalités" %}</a>
+                <a href="{% url 'home' %}#temoignages">{% trans "Avis" %}</a>
+                <a href="{% url 'home' %}#faq">{% trans "FAQ" %}</a>
             </nav>
 
             <div class="header-cta">
-                <a href="{% url 'login' %}" class="btn btn-ghost">Connexion</a>
-                <a href="{% url 'register' %}" class="btn btn-primary">S'inscrire</a>
+                <form action="{% url 'set_language' %}" method="post" class="lang-switcher" aria-label="{% trans 'Changer de langue' %}">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}" />
+                    <span class="lang-globe">🌐</span>
+                    <button type="submit" name="language" value="fr" class="{% if LANGUAGE_CODE == 'fr' %}active{% endif %}" title="Français">FR</button>
+                    <button type="submit" name="language" value="ar" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}" title="العربية">ع</button>
+                </form>
+                <a href="{% url 'login' %}" class="btn btn-ghost">{% trans "Connexion" %}</a>
+                <a href="{% url 'register' %}" class="btn btn-primary">{% trans "S'inscrire" %}</a>
             </div>
 
-            <button class="nav-toggle" aria-label="Ouvrir le menu" id="navToggle">
+            <button class="nav-toggle" aria-label="{% trans 'Ouvrir le menu' %}" id="navToggle">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -53,37 +83,37 @@
                     <span class="brand-mark">✨</span>
                     <span class="brand-name">Little <em>Future</em></span>
                 </a>
-                <p class="muted">L'écosystème magique des crèches modernes. Apprendre, grandir, sourire.</p>
+                <p class="muted">{% trans "L'écosystème magique des crèches modernes. Apprendre, grandir, sourire." %}</p>
             </div>
             <div>
-                <h4>Plateforme</h4>
+                <h4>{% trans "Plateforme" %}</h4>
                 <ul>
-                    <li><a href="{% url 'home' %}#services">Services</a></li>
-                    <li><a href="{% url 'home' %}#fonctionnalites">Fonctionnalités</a></li>
-                    <li><a href="{% url 'home' %}#temoignages">Témoignages</a></li>
+                    <li><a href="{% url 'home' %}#services">{% trans "Services" %}</a></li>
+                    <li><a href="{% url 'home' %}#fonctionnalites">{% trans "Fonctionnalités" %}</a></li>
+                    <li><a href="{% url 'home' %}#temoignages">{% trans "Témoignages" %}</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Société</h4>
+                <h4>{% trans "Société" %}</h4>
                 <ul>
-                    <li><a href="{% url 'about' %}">À propos</a></li>
-                    <li><a href="{% url 'team' %}">Notre équipe</a></li>
-                    <li><a href="{% url 'security' %}">Sécurité</a></li>
-                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'about' %}">{% trans "À propos" %}</a></li>
+                    <li><a href="{% url 'team' %}">{% trans "Notre équipe" %}</a></li>
+                    <li><a href="{% url 'security' %}">{% trans "Sécurité" %}</a></li>
+                    <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Contact</h4>
+                <h4>{% trans "Contact" %}</h4>
                 <ul>
                     <li>amirraffar22@yahoo.com</li>
                     <li>+213661822299</li>
-                    <li>SBA, Algerie</li>
+                    <li>{% trans "SBA, Algérie" %}</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom container">
-            <span>© {% now "Y" %} Little Future.Dr RAFFAR EL AMIR ABDELKADER - Concepteur, Développeur et Programmeur du Projet.Tous droits réservés.</span>
-            <span>Conçu avec ❤️ pour les enfants.</span>
+            <span>© {% now "Y" %} Little Future. Dr RAFFAR EL AMIR ABDELKADER — {% trans "Concepteur, Développeur et Programmeur du Projet. Tous droits réservés." %}</span>
+            <span>{% trans "Conçu avec ❤️ pour les enfants." %}</span>
         </div>
     </footer>
 

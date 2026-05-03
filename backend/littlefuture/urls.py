@@ -10,6 +10,8 @@ admin.site.index_title = "Tableau d'administration"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # Language switching (POST to /i18n/setlang/)
+    path("i18n/", include("django.conf.urls.i18n")),
     # Server-rendered French pages
     path("", include("apps.core.urls")),
     # REST API

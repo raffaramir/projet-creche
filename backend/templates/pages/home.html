@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Little Future — La crèche intelligente, magique et sécurisée{% endblock %}
+{% block title %}{% trans "Little Future — La crèche intelligente, magique et sécurisée" %}{% endblock %}
 
 {% block content %}
 <!-- HERO -->
@@ -18,27 +19,25 @@
 
     <div class="container hero-grid">
         <div class="hero-copy reveal">
-            <span class="eyebrow">✨ La crèche du futur est arrivée</span>
+            <span class="eyebrow">{% trans "✨ La crèche du futur est arrivée" %}</span>
             <h1 class="hero-title">
-                Apprendre, grandir et <span class="grad">s'émerveiller</span>
-                <br />dans un univers <span class="grad-2">magique</span>.
+                {% trans "Apprendre, grandir et" %} <span class="grad">{% trans "s'émerveiller" %}</span>
+                <br />{% trans "dans un univers" %} <span class="grad-2">{% trans "magique" %}</span>.
             </h1>
             <p class="hero-sub">
-                Notre Projet "Little Future" est la plateforme tout-en-un pour les crèches modernes :
-                éducation 3D interactive, suivi santé complet, évaluation quotidienne,
-                et communication en temps réel entre parents et professionnels ( Nesrine & Feriel vous accompagnent).
+                {% trans "Notre Projet \"Little Future\" est la plateforme tout-en-un pour les crèches modernes : éducation 3D interactive, suivi santé complet, évaluation quotidienne, et communication en temps réel entre parents et professionnels (Nesrine & Feriel vous accompagnent)." %}
             </p>
             <div class="hero-cta">
                 <a href="{% url 'register' %}" class="btn btn-primary btn-xl">
-                    Commencer maintenant
+                    {% trans "Commencer maintenant" %}
                     <span class="btn-arrow">→</span>
                 </a>
-                <a href="#fonctionnalites" class="btn btn-outline btn-xl">Découvrir</a>
+                <a href="#fonctionnalites" class="btn btn-outline btn-xl">{% trans "Découvrir" %}</a>
             </div>
             <div class="hero-stats">
-                <div><strong>120+</strong><span>Crèches partenaires</span></div>
-                <div><strong>4 800</strong><span>Enfants accompagnés</span></div>
-                <div><strong>98%</strong><span>Parents satisfaits</span></div>
+                <div><strong>120+</strong><span>{% trans "Crèches partenaires" %}</span></div>
+                <div><strong>4 800</strong><span>{% trans "Enfants accompagnés" %}</span></div>
+                <div><strong>98%</strong><span>{% trans "Parents satisfaits" %}</span></div>
             </div>
         </div>
 
@@ -59,9 +58,9 @@
 <section id="services" class="section">
     <div class="container">
         <header class="section-head reveal">
-            <span class="eyebrow">Nos services</span>
-            <h2>Tout ce dont une crèche moderne a besoin</h2>
-            <p>Une plateforme unique pour les parents, les responsables et les éducateurs.</p>
+            <span class="eyebrow">{% trans "Nos services" %}</span>
+            <h2>{% trans "Tout ce dont une crèche moderne a besoin" %}</h2>
+            <p>{% trans "Une plateforme unique pour les parents, les responsables et les éducateurs." %}</p>
         </header>
 
         <div class="grid grid-3">

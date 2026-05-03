@@ -69,6 +69,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
+                "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -104,7 +105,10 @@ TIME_ZONE = "Europe/Paris"
 USE_I18N = True
 USE_TZ = True
 
-LANGUAGES = [("fr", "Français")]
+LANGUAGES = [
+    ("fr", "Français"),
+    ("ar", "العربية"),
+]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 STATIC_URL = "/static/"
