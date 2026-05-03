@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Notre équipe — Little Future{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <header class="section-head reveal"><span class="eyebrow">Équipe</span><h2>Les visages derrière Little Future</h2></header>
+        <div class="team-grid">
+            <article class="team-card reveal"><div class="team-photo" style="background-image: url('{% static "img/team-1.jpg" %}');"></div><h4>Aïcha Benali</h4><span>Co-fondatrice & Pédagogie</span></article>
+            <article class="team-card reveal"><div class="team-photo" style="background-image: url('{% static "img/team-2.jpg" %}');"></div><h4>Karim Diallo</h4><span>CTO & Architecte</span></article>
+            <article class="team-card reveal"><div class="team-photo" style="background-image: url('{% static "img/team-3.jpg" %}');"></div><h4>Léa Moreau</h4><span>Designer 3D</span></article>
+            <article class="team-card reveal"><div class="team-photo" style="background-image: url('{% static "img/team-4.jpg" %}');"></div><h4>Dr. Yasmine Haddad</h4><span>Conseillère santé</span></article>
+        </div>
+        <p class="muted center">Pour personnaliser les photos, déposez vos images dans <code>backend/static/img/</code> sous les noms <code>team-1.jpg</code> à <code>team-4.jpg</code>.</p>
+    </div>
+</section>
+{% endblock %}

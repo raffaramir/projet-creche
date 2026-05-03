@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Inscription parent — Little Future{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="container auth-card auth-card-wide reveal">
+        <h1>Inscription parent</h1>
+        <p class="muted">Votre compte sera activé après validation administrateur.</p>
+        <form id="parentForm" class="form form-grid" enctype="multipart/form-data">
+            <label>Prénom <input name="first_name" required /></label>
+            <label>Nom <input name="last_name" required /></label>
+            <label>Adresse email <input type="email" name="email" required /></label>
+            <label>Téléphone <input name="phone" /></label>
+            <label>Date de naissance <input type="date" name="date_of_birth" /></label>
+            <label>Lieu de naissance <input name="place_of_birth" /></label>
+            <label class="span-2">Adresse <input name="address" /></label>
+            <label>Ville <input name="city" /></label>
+            <label>Code postal <input name="postal_code" /></label>
+            <label>Mot de passe <input type="password" name="password" required minlength="8" /></label>
+            <label>Confirmer le mot de passe <input type="password" name="password_confirm" required minlength="8" /></label>
+            <label class="span-2">Photo de profil (optionnelle) <input type="file" name="profile_image" accept="image/*" /></label>
+            <button type="submit" class="btn btn-primary btn-xl span-2">Créer mon compte</button>
+            <div id="parentMsg" class="form-message span-2"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+document.getElementById("parentForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const msg = document.getElementById("parentMsg");
+    msg.textContent = "Envoi…";
+    try {
+        const res = await fetch("/api/v1/auth/register/parent/", {
+            method: "POST",
+            body: formData,
+        });
+        const body = await res.json();
+        if (!res.ok) {
+            msg.className = "form-message error";
+            msg.textContent = JSON.stringify(body);
+            return;
+        }
+        msg.className = "form-message success";
+        msg.textContent = body.message || "Inscription envoyée !";
+        e.target.reset();
+    } catch (err) {
+        msg.className = "form-message error";
+        msg.textContent = "Erreur réseau.";
+    }
+});
+</script>
+{% endblock %}

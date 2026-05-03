@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Connexion — Little Future{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="container auth-card reveal">
+        <h1>Connexion</h1>
+        <p class="muted">Accédez à votre espace Little Future.</p>
+        <form id="loginForm" class="form">
+            <label>Adresse email
+                <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>Mot de passe
+                <input type="password" name="password" required autocomplete="current-password" />
+            </label>
+            <button type="submit" class="btn btn-primary btn-xl">Se connecter</button>
+            <p class="form-foot">Pas encore de compte ? <a href="{% url 'register' %}">Créer un compte</a></p>
+            <div id="loginMessage" class="form-message"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const msg = document.getElementById("loginMessage");
+    msg.textContent = "Connexion en cours…";
+    try {
+        const res = await fetch("/api/v1/auth/login/", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data),
+        });
+        const body = await res.json();
+        if (!res.ok) {
+            msg.className = "form-message error";
+            msg.textContent = body.detail || JSON.stringify(body);
+            return;
+        }
+        localStorage.setItem("lf_access", body.access);
+        localStorage.setItem("lf_refresh", body.refresh);
+        localStorage.setItem("lf_user", JSON.stringify(body.user));
+        window.location.href = "/tableau-de-bord/";
+    } catch (err) {
+        msg.className = "form-message error";
+        msg.textContent = "Erreur de connexion.";
+    }
+});
+</script>
+{% endblock %}

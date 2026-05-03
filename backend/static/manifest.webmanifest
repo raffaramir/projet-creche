@@ -1,0 +1,37 @@
+{
+    "name": "Little Future — La crèche intelligente",
+    "short_name": "Little Future",
+    "description": "Plateforme magique pour crèches : éducation 3D, suivi santé, évaluation quotidienne et messagerie.",
+    "lang": "fr-FR",
+    "dir": "ltr",
+    "start_url": "/?source=pwa",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#fff8fb",
+    "theme_color": "#F7B6C2",
+    "categories": ["education", "kids", "lifestyle"],
+    "icons": [
+        { "src": "/static/img/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "/static/img/pwa/icon-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
+        { "src": "/static/img/pwa/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+        { "src": "/static/img/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "/static/img/pwa/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ],
+    "shortcuts": [
+        {
+            "name": "Cours 3D",
+            "short_name": "Cours",
+            "description": "Voir les cours 3D",
+            "url": "/cours/?source=pwa-shortcut",
+            "icons": [{ "src": "/static/img/pwa/icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Tableau de bord",
+            "short_name": "Dashboard",
+            "description": "Accéder au tableau de bord",
+            "url": "/tableau-de-bord/?source=pwa-shortcut",
+            "icons": [{ "src": "/static/img/pwa/icon-192.png", "sizes": "192x192" }]
+        }
+    ]
+}

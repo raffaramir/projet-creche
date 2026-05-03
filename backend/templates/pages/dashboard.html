@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Tableau de bord — Little Future{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <header class="section-head">
+            <span class="eyebrow">Bienvenue</span>
+            <h2>Bonjour {{ user_obj.first_name|default:user_obj.email }} ✨</h2>
+            <p>Rôle : <strong>{{ user_obj.get_role_display }}</strong> — Statut : <strong>{{ user_obj.get_approval_status_display }}</strong></p>
+        </header>
+
+        {% if not user_obj.is_approved and not user_obj.is_superuser %}
+        <div class="card center">
+            <div class="card-icon">⏳</div>
+            <h3>Compte en attente de validation</h3>
+            <p>Notre équipe vérifie votre inscription. Vous recevrez un email dès que votre compte sera activé.</p>
+        </div>
+        {% else %}
+        <div class="grid grid-3">
+            <a href="/admin/" class="card"><div class="card-icon">⚙️</div><h3>Administration</h3><p>Accédez à l'espace admin Django.</p></a>
+            <div class="card"><div class="card-icon">👶</div><h3>Mes enfants</h3><p>API : <code>/api/v1/children/</code></p></div>
+            <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>Cours 3D</h3><p>Lettres, chiffres, langues, prophètes…</p></a>
+            <div class="card"><div class="card-icon">🩺</div><h3>Santé</h3><p>API : <code>/api/v1/health/records/</code></p></div>
+            <div class="card"><div class="card-icon">📊</div><h3>Suivi</h3><p>API : <code>/api/v1/tracking/evaluations/</code></p></div>
+            <div class="card"><div class="card-icon">💬</div><h3>Messagerie</h3><p>API : <code>/api/v1/chat/conversations/</code></p></div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#F7B6C2" />
+    <meta name="description" content="Little Future — la plateforme intelligente pour crèches : éducation 3D, suivi santé, évaluation quotidienne, messagerie et bien plus." />
+    <title>{% block title %}Little Future — La crèche intelligente{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <a href="{% url 'home' %}" class="brand">
+                <span class="brand-mark">✨</span>
+                <span class="brand-name">Little <em>Future</em></span>
+            </a>
+
+            <nav class="primary-nav" aria-label="Navigation principale">
+                <a href="{% url 'home' %}#services">Services</a>
+                <a href="{% url 'course_catalog' %}">Cours 3D</a>
+                <a href="{% url 'home' %}#fonctionnalites">Fonctionnalités</a>
+                <a href="{% url 'home' %}#temoignages">Avis</a>
+                <a href="{% url 'home' %}#faq">FAQ</a>
+            </nav>
+
+            <div class="header-cta">
+                <a href="{% url 'login' %}" class="btn btn-ghost">Connexion</a>
+                <a href="{% url 'register' %}" class="btn btn-primary">S'inscrire</a>
+            </div>
+
+            <button class="nav-toggle" aria-label="Ouvrir le menu" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="{% url 'home' %}" class="brand brand-footer">
+                    <span class="brand-mark">✨</span>
+                    <span class="brand-name">Little <em>Future</em></span>
+                </a>
+                <p class="muted">L'écosystème magique des crèches modernes. Apprendre, grandir, sourire.</p>
+            </div>
+            <div>
+                <h4>Plateforme</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}#services">Services</a></li>
+                    <li><a href="{% url 'home' %}#fonctionnalites">Fonctionnalités</a></li>
+                    <li><a href="{% url 'home' %}#temoignages">Témoignages</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Société</h4>
+                <ul>
+                    <li><a href="{% url 'about' %}">À propos</a></li>
+                    <li><a href="{% url 'team' %}">Notre équipe</a></li>
+                    <li><a href="{% url 'security' %}">Sécurité</a></li>
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>amirraffar22@yahoo.com</li>
+                    <li>+213661822299</li>
+                    <li>SBA, Algerie</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <span>© {% now "Y" %} Little Future.Dr RAFFAR EL AMIR ABDELKADER - Concepteur, Développeur et Programmeur du Projet.Tous droits réservés.</span>
+            <span>Conçu avec ❤️ pour les enfants.</span>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
