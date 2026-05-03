@@ -6,6 +6,7 @@
         <h1>Inscription responsable de crèche</h1>
         <p class="muted">Votre crèche sera vérifiée avant activation.</p>
         <form id="managerForm" class="form form-grid" enctype="multipart/form-data">
+            {% csrf_token %}
             <label>Prénom <input name="first_name" required /></label>
             <label>Nom <input name="last_name" required /></label>
             <label>Adresse email <input type="email" name="email" required /></label>
@@ -25,14 +26,22 @@
 </section>
 
 <script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
 document.getElementById("managerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const msg = document.getElementById("managerMsg");
     msg.textContent = "Envoi…";
     try {
+        const csrftoken = getCookie('csrftoken') || formData.get('csrfmiddlewaretoken');
         const res = await fetch("/api/v1/auth/register/manager/", {
             method: "POST",
+            headers: {"X-CSRFToken": csrftoken},
             body: formData,
         });
         const body = await res.json();
