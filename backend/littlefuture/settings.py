@@ -148,11 +148,17 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:8000"]
 if RAILWAY_HOST:
     CSRF_TRUSTED_ORIGINS.append(f"https://{RAILWAY_HOST}")
+PYTHONANYWHERE_HOST = os.environ.get("PYTHONANYWHERE_HOST")
+if PYTHONANYWHERE_HOST:
+    ALLOWED_HOSTS.append(PYTHONANYWHERE_HOST)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{PYTHONANYWHERE_HOST}")
 
-# Production security hardening (only when DEBUG is off)
+# Production security hardening (only when DEBUG is off).
+# On PythonAnywhere, HTTPS is terminated upstream and PA already redirects HTTP to HTTPS,
+# so SECURE_SSL_REDIRECT must stay off to avoid breaking session cookies.
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False").lower() == "true"
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
