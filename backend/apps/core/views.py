@@ -1,5 +1,12 @@
+import json
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from apps.children.models import Child
 from apps.education.models import Course, CourseProgress
@@ -7,6 +14,42 @@ from apps.education.models import Course, CourseProgress
 
 def home(request):
     return render(request, "pages/home.html")
+
+
+@require_POST
+def session_login(request):
+    """Authenticate user and create a Django session (for @login_required views)."""
+    try:
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, ValueError):
+        return JsonResponse({"detail": "Données invalides."}, status=400)
+
+    email = data.get("email", "").strip()
+    password = data.get("password", "")
+
+    user = authenticate(request, email=email, password=password)
+    if user is None:
+        return JsonResponse({"detail": "Email ou mot de passe incorrect."}, status=401)
+
+    if not user.is_approved and not user.is_superuser:
+        return JsonResponse(
+            {"detail": "Votre compte est en attente de validation par un administrateur."},
+            status=403,
+        )
+
+    auth_login(request, user)
+    return JsonResponse({
+        "ok": True,
+        "role": user.role,
+        "email": user.email,
+        "full_name": user.full_name,
+    })
+
+
+def session_logout(request):
+    """Log out and redirect to home."""
+    auth_logout(request)
+    return redirect("home")
 
 
 def login_page(request):

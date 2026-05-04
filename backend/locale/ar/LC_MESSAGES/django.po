@@ -46,6 +46,9 @@ msgstr "تسجيل الدخول"
 msgid "S'inscrire"
 msgstr "التسجيل"
 
+msgid "Déconnexion"
+msgstr "تسجيل الخروج"
+
 msgid "Ouvrir le menu"
 msgstr "فتح القائمة"
 

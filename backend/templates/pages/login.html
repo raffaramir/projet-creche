@@ -30,26 +30,42 @@ function getCookie(name) {
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const formObj = new FormData(e.target);
-    const data = Object.fromEntries(formObj);
-    delete data.csrfmiddlewaretoken;
     const msg = document.getElementById("loginMessage");
+    msg.className = "form-message";
     msg.textContent = "Connexion en cours…";
+    const csrftoken = getCookie('csrftoken') || formObj.get('csrfmiddlewaretoken');
+    const payload = {
+        email: formObj.get("email"),
+        password: formObj.get("password"),
+    };
     try {
-        const csrftoken = getCookie('csrftoken') || formObj.get('csrfmiddlewaretoken');
-        const res = await fetch("/api/v1/auth/login/", {
+        // Step 1 — create Django session (required for @login_required pages)
+        const res = await fetch("/connexion/session/", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFToken": csrftoken},
-            body: JSON.stringify(data),
+            body: JSON.stringify(payload),
         });
         const body = await res.json();
         if (!res.ok) {
             msg.className = "form-message error";
-            msg.textContent = body.detail || JSON.stringify(body);
+            msg.textContent = body.detail || "Erreur de connexion.";
             return;
         }
-        localStorage.setItem("lf_access", body.access);
-        localStorage.setItem("lf_refresh", body.refresh);
-        localStorage.setItem("lf_user", JSON.stringify(body.user));
+        // Step 2 — also get JWT tokens for API calls
+        try {
+            const jwtRes = await fetch("/api/v1/auth/login/", {
+                method: "POST",
+                headers: {"Content-Type": "application/json", "X-CSRFToken": csrftoken},
+                body: JSON.stringify(payload),
+            });
+            if (jwtRes.ok) {
+                const jwtBody = await jwtRes.json();
+                localStorage.setItem("lf_access", jwtBody.access);
+                localStorage.setItem("lf_refresh", jwtBody.refresh);
+                localStorage.setItem("lf_user", JSON.stringify(jwtBody.user));
+            }
+        } catch (_) { /* JWT is optional — session is enough for page navigation */ }
+
         window.location.href = "/tableau-de-bord/";
     } catch (err) {
         msg.className = "form-message error";

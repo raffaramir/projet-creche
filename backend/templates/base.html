@@ -62,8 +62,13 @@
                     <button type="submit" name="language" value="fr" class="{% if LANGUAGE_CODE == 'fr' %}active{% endif %}" title="Français">FR</button>
                     <button type="submit" name="language" value="ar" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}" title="العربية">ع</button>
                 </form>
-                <a href="{% url 'login' %}" class="btn btn-ghost">{% trans "Connexion" %}</a>
-                <a href="{% url 'register' %}" class="btn btn-primary">{% trans "S'inscrire" %}</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-ghost">{% trans "Tableau de bord" %}</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary">{% trans "Déconnexion" %}</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-ghost">{% trans "Connexion" %}</a>
+                    <a href="{% url 'register' %}" class="btn btn-primary">{% trans "S'inscrire" %}</a>
+                {% endif %}
             </div>
 
             <button class="nav-toggle" aria-label="{% trans 'Ouvrir le menu' %}" id="navToggle">
