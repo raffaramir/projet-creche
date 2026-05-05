@@ -1,0 +1,8 @@
+from django.apps import AppConfig
+
+
+class NurseriesConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.nurseries"
+    label = "nurseries"
+    verbose_name = "Crèches"

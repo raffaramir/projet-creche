@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Connexion — Little Future{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="container auth-card reveal">
+        <h1>Connexion</h1>
+        <p class="muted">Accédez à votre espace Little Future.</p>
+        <form id="loginForm" class="form">
+            {% csrf_token %}
+            <label>Adresse email
+                <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>Mot de passe
+                <input type="password" name="password" required autocomplete="current-password" />
+            </label>
+            <button type="submit" class="btn btn-primary btn-xl">Se connecter</button>
+            <p class="form-foot">Pas encore de compte ? <a href="{% url 'register' %}">Créer un compte</a></p>
+            <div id="loginMessage" class="form-message"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formObj = new FormData(e.target);
+    const msg = document.getElementById("loginMessage");
+    msg.className = "form-message";
+    msg.textContent = "Connexion en cours…";
+    const csrftoken = getCookie('csrftoken') || formObj.get('csrfmiddlewaretoken');
+    const payload = {
+        email: formObj.get("email"),
+        password: formObj.get("password"),
+    };
+    try {
+        // Step 1 — create Django session (required for @login_required pages)
+        const res = await fetch("/connexion/session/", {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "X-CSRFToken": csrftoken},
+            body: JSON.stringify(payload),
+        });
+        const body = await res.json();
+        if (!res.ok) {
+            msg.className = "form-message error";
+            msg.textContent = body.detail || "Erreur de connexion.";
+            return;
+        }
+        // Step 2 — also get JWT tokens for API calls
+        try {
+            const jwtRes = await fetch("/api/v1/auth/login/", {
+                method: "POST",
+                headers: {"Content-Type": "application/json", "X-CSRFToken": csrftoken},
+                body: JSON.stringify(payload),
+            });
+            if (jwtRes.ok) {
+                const jwtBody = await jwtRes.json();
+                localStorage.setItem("lf_access", jwtBody.access);
+                localStorage.setItem("lf_refresh", jwtBody.refresh);
+                localStorage.setItem("lf_user", JSON.stringify(jwtBody.user));
+            }
+        } catch (_) { /* JWT is optional — session is enough for page navigation */ }
+
+        window.location.href = "/tableau-de-bord/";
+    } catch (err) {
+        msg.className = "form-message error";
+        msg.textContent = "Erreur de connexion.";
+    }
+});
+</script>
+{% endblock %}

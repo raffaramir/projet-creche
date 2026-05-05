@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Tableau de bord" %} — Little Future{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <header class="section-head">
+            <span class="eyebrow">{% trans "Bienvenue" %}</span>
+            <h2>{% trans "Bonjour" %} {{ user_obj.first_name|default:user_obj.email }} ✨</h2>
+            <p>{% trans "Rôle" %} : <strong>{{ user_obj.get_role_display }}</strong> — {% trans "Statut" %} : <strong>{{ user_obj.get_approval_status_display }}</strong></p>
+        </header>
+
+        {% if not user_obj.is_approved and not user_obj.is_superuser %}
+        <div class="card center">
+            <div class="card-icon">⏳</div>
+            <h3>{% trans "Compte en attente de validation" %}</h3>
+            <p>{% trans "Notre équipe vérifie votre inscription. Vous recevrez un email dès que votre compte sera activé." %}</p>
+        </div>
+        {% else %}
+        <div class="grid grid-3">
+            {% if user_obj.is_superuser or user_obj.role == 'admin' %}
+                <a href="/admin/" class="card"><div class="card-icon">⚙️</div><h3>{% trans "Administration" %}</h3><p>{% trans "Accédez à l'espace admin Django." %}</p></a>
+                <div class="card"><div class="card-icon">👥</div><h3>{% trans "Utilisateurs" %}</h3><p>{% trans "Validation des comptes en attente." %}</p></div>
+                <div class="card"><div class="card-icon">🏫</div><h3>{% trans "Crèches" %}</h3><p>{% trans "Gestion des structures." %}</p></div>
+                <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>{% trans "Cours 3D" %}</h3><p>{% trans "Catalogue complet." %}</p></a>
+                <div class="card"><div class="card-icon">📊</div><h3>{% trans "Statistiques" %}</h3><p>{% trans "Vue d'ensemble de la plateforme." %}</p></div>
+                <div class="card"><div class="card-icon">💬</div><h3>{% trans "Messagerie" %}</h3><p>{% trans "Toutes les conversations." %}</p></div>
+
+            {% elif user_obj.role == 'parent' %}
+                <div class="card"><div class="card-icon">👶</div><h3>{% trans "Mes enfants" %}</h3><p>{% trans "Voir et gérer les profils de vos enfants." %}</p></div>
+                <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>{% trans "Cours 3D" %}</h3><p>{% trans "Lettres, chiffres, langues, prophètes…" %}</p></a>
+                <div class="card"><div class="card-icon">📊</div><h3>{% trans "Suivi des progrès" %}</h3><p>{% trans "Évolution de vos enfants en temps réel." %}</p></div>
+                <div class="card"><div class="card-icon">🩺</div><h3>{% trans "Santé" %}</h3><p>{% trans "Carnet de santé et rendez-vous médicaux." %}</p></div>
+                <div class="card"><div class="card-icon">💬</div><h3>{% trans "Messagerie" %}</h3><p>{% trans "Communication avec la crèche." %}</p></div>
+                <div class="card"><div class="card-icon">📅</div><h3>{% trans "Activités" %}</h3><p>{% trans "Programme et événements à venir." %}</p></div>
+
+            {% elif user_obj.role == 'manager' %}
+                <div class="card"><div class="card-icon">🏫</div><h3>{% trans "Ma crèche" %}</h3><p>{% trans "Informations et configuration." %}</p></div>
+                <div class="card"><div class="card-icon">👶</div><h3>{% trans "Enfants inscrits" %}</h3><p>{% trans "Liste des enfants de la crèche." %}</p></div>
+                <div class="card"><div class="card-icon">👨‍🏫</div><h3>{% trans "Équipe éducative" %}</h3><p>{% trans "Gestion des éducateurs." %}</p></div>
+                <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>{% trans "Cours 3D" %}</h3><p>{% trans "Catalogue d'apprentissage." %}</p></a>
+                <div class="card"><div class="card-icon">📊</div><h3>{% trans "Suivi pédagogique" %}</h3><p>{% trans "Progrès de tous les enfants." %}</p></div>
+                <div class="card"><div class="card-icon">💬</div><h3>{% trans "Messagerie" %}</h3><p>{% trans "Communication avec les parents." %}</p></div>
+
+            {% elif user_obj.role == 'educator' %}
+                <div class="card"><div class="card-icon">👶</div><h3>{% trans "Mes élèves" %}</h3><p>{% trans "Enfants dont vous avez la charge." %}</p></div>
+                <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>{% trans "Cours 3D" %}</h3><p>{% trans "Programme pédagogique." %}</p></a>
+                <div class="card"><div class="card-icon">📊</div><h3>{% trans "Évaluations" %}</h3><p>{% trans "Suivi des progrès et évaluations." %}</p></div>
+                <div class="card"><div class="card-icon">📝</div><h3>{% trans "Activités du jour" %}</h3><p>{% trans "Planning des activités." %}</p></div>
+                <div class="card"><div class="card-icon">💬</div><h3>{% trans "Messagerie" %}</h3><p>{% trans "Communication parents et équipe." %}</p></div>
+
+            {% else %}
+                <a href="{% url 'course_catalog' %}" class="card"><div class="card-icon">🎓</div><h3>{% trans "Cours 3D" %}</h3><p>{% trans "Découvrez le catalogue." %}</p></a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe\" --version)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/pip.exe\" install --quiet django djangorestframework djangorestframework-simplejwt django-cors-headers Pillow channels python-decouple)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/django-admin.exe\" startproject littlefuture .)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe\" manage.py makemigrations)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe\" manage.py migrate)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe\" manage.py check)",
+      "Bash(\"c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe\" manage.py shell -c \"from django.test import Client; c = Client\\(\\); r = c.get\\('/'\\); print\\('Home status:', r.status_code, 'len:', len\\(r.content\\)\\)\")",
+      "Bash('c:/Users/Admin/Desktop/projet creche/.venv/Scripts/python.exe' manage.py shell -c ' *)",
+      "Bash(dir \"c:\\\\Users\\\\Admin\\\\Desktop\\\\projet creche\")",
+      "Bash(dir \"c:\\\\Users\\\\Admin\\\\Desktop\\\\projet creche\\\\backend\")",
+      "Bash(dir \"c:\\\\Users\\\\Admin\\\\Desktop\\\\projet creche\\\\backend\\\\littlefuture\")",
+      "Bash(del \"c:\\\\Users\\\\Admin\\\\Desktop\\\\projet creche\\\\railway.toml\")"
+    ]
+  }
+}

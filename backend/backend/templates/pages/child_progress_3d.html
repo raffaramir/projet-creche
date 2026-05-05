@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Progression de {{ child.full_name }} — Little Future{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">📈 Suivi 3D</span>
+            <h2>Progression de {{ child.full_name }}</h2>
+            <p>Visualisez en 3D les apprentissages de votre enfant.</p>
+        </header>
+
+        <div class="progress-grid reveal">
+            <div class="progress-stage">
+                <canvas id="progress3d"
+                        aria-label="Visualisation 3D de la progression"
+                        data-progress='{{ progress_json|default:"[]" }}'></canvas>
+                <p class="stage-hint muted">💡 Chaque sphère représente un cours. La hauteur = avancement.</p>
+            </div>
+
+            <aside class="progress-side">
+                <h3>Cours suivis</h3>
+                {% if progress %}
+                <ul class="progress-list" id="progressList">
+                    {% for p in progress %}
+                    <li data-course="{{ p.course.title|escapejs }}" data-percent="{{ p.completion_percent }}">
+                        <strong>{{ p.course.title }}</strong>
+                        <div class="bar-track"><div class="bar-fill" style="width: {{ p.completion_percent }}%;"></div></div>
+                        <span class="muted">{{ p.completion_percent }}% · score {{ p.score }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="muted">Aucun cours suivi pour le moment. Inscrivez {{ child.first_name }} à un cours pour voir sa progression apparaître ici en 3D.</p>
+                {% endif %}
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<script id="progressData" type="application/json">
+[
+{% for p in progress %}
+  {"title": "{{ p.course.title|escapejs }}", "category": "{{ p.course.category }}", "percent": {{ p.completion_percent }}, "score": {{ p.score }}}{% if not forloop.last %},{% endif %}
+{% endfor %}
+]
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="{% static 'js/progress_3d.js' %}"></script>
+{% endblock %}

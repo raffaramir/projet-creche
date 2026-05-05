@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ course.title }} — Little Future{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <a href="{% url 'course_catalog' %}" class="back-link">← Tous les cours</a>
+
+        <header class="section-head reveal">
+            <span class="eyebrow">{{ course.get_category_display }}</span>
+            <h2>{{ course.title }}</h2>
+            <p>{{ course.description }}</p>
+        </header>
+
+        <div class="course-stage reveal">
+            <div class="stage-header">
+                <div class="stage-controls">
+                    <button class="btn btn-outline" data-3d-action="prev">←</button>
+                    <span id="stage3dLabel" class="stage-label">Chargement…</span>
+                    <button class="btn btn-outline" data-3d-action="next">→</button>
+                </div>
+                <div class="stage-toggle">
+                    <button class="btn btn-ghost" data-3d-action="rotate">🔄 Rotation auto</button>
+                    <button class="btn btn-ghost" data-3d-action="speak">🔊 Écouter</button>
+                </div>
+            </div>
+            <canvas id="stage3d"
+                    data-category="{{ course.category }}"
+                    data-scene-url="{{ course.scene_url }}"
+                    aria-label="Scène 3D interactive"></canvas>
+            <p class="stage-hint muted">💡 Glissez avec la souris ou le doigt pour faire pivoter.</p>
+        </div>
+
+        {% if course.lessons.all %}
+        <div class="lessons-grid reveal">
+            <h3>📚 Les leçons</h3>
+            <ol class="lessons-list">
+                {% for lesson in course.lessons.all %}
+                <li>
+                    <strong>{{ lesson.title }}</strong>
+                    <span class="muted">· {{ lesson.duration_minutes }} min</span>
+                    {% if lesson.content %}<p>{{ lesson.content }}</p>{% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="{% static 'js/course_3d.js' %}"></script>
+{% endblock %}
