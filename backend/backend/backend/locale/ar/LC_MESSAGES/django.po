@@ -1,0 +1,274 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Little Future 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-03 12:00+0000\n"
+"PO-Revision-Date: 2026-05-03 12:00+0000\n"
+"Last-Translator: Raffar El Amir <amirraffar22@yahoo.com>\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+#: templates/base.html
+msgid "Little Future — la plateforme intelligente pour crèches : éducation 3D, suivi santé, évaluation quotidienne, messagerie et bien plus."
+msgstr "ليتل فيوتشر — منصة ذكية لدور الحضانة: التعليم ثلاثي الأبعاد، المتابعة الصحية، التقييم اليومي، المراسلة والمزيد."
+
+msgid "Little Future — La crèche intelligente"
+msgstr "ليتل فيوتشر — الحضانة الذكية"
+
+msgid "Navigation principale"
+msgstr "القائمة الرئيسية"
+
+msgid "Services"
+msgstr "الخدمات"
+
+msgid "Cours 3D"
+msgstr "الدروس ثلاثية الأبعاد"
+
+msgid "Fonctionnalités"
+msgstr "المميزات"
+
+msgid "Avis"
+msgstr "آراء"
+
+msgid "FAQ"
+msgstr "أسئلة شائعة"
+
+msgid "Changer de langue"
+msgstr "تغيير اللغة"
+
+msgid "Connexion"
+msgstr "تسجيل الدخول"
+
+msgid "S'inscrire"
+msgstr "التسجيل"
+
+msgid "Déconnexion"
+msgstr "تسجيل الخروج"
+
+msgid "Ouvrir le menu"
+msgstr "فتح القائمة"
+
+msgid "L'écosystème magique des crèches modernes. Apprendre, grandir, sourire."
+msgstr "النظام السحري لدور الحضانة الحديثة. التعلم والنمو والابتسام."
+
+msgid "Plateforme"
+msgstr "المنصة"
+
+msgid "Témoignages"
+msgstr "الشهادات"
+
+msgid "Société"
+msgstr "الشركة"
+
+msgid "À propos"
+msgstr "من نحن"
+
+msgid "Notre équipe"
+msgstr "فريقنا"
+
+msgid "Sécurité"
+msgstr "الأمان"
+
+msgid "Contact"
+msgstr "اتصل بنا"
+
+msgid "SBA, Algérie"
+msgstr "سيدي بلعباس، الجزائر"
+
+msgid "Concepteur, Développeur et Programmeur du Projet. Tous droits réservés."
+msgstr "مصمم ومطور ومبرمج المشروع. جميع الحقوق محفوظة."
+
+msgid "Conçu avec ❤️ pour les enfants."
+msgstr "صُمم بـ ❤️ من أجل الأطفال."
+
+#: templates/pages/dashboard.html
+msgid "Tableau de bord"
+msgstr "لوحة التحكم"
+
+msgid "Bienvenue"
+msgstr "مرحباً"
+
+msgid "Bonjour"
+msgstr "مرحباً"
+
+msgid "Rôle"
+msgstr "الدور"
+
+msgid "Statut"
+msgstr "الحالة"
+
+msgid "Compte en attente de validation"
+msgstr "الحساب في انتظار التفعيل"
+
+msgid "Notre équipe vérifie votre inscription. Vous recevrez un email dès que votre compte sera activé."
+msgstr "فريقنا يقوم بمراجعة تسجيلك. ستتلقى بريداً إلكترونياً بمجرد تفعيل حسابك."
+
+msgid "Administration"
+msgstr "الإدارة"
+
+msgid "Accédez à l'espace admin Django."
+msgstr "الوصول إلى لوحة إدارة جانغو."
+
+msgid "Utilisateurs"
+msgstr "المستخدمون"
+
+msgid "Validation des comptes en attente."
+msgstr "تفعيل الحسابات المعلقة."
+
+msgid "Crèches"
+msgstr "دور الحضانة"
+
+msgid "Gestion des structures."
+msgstr "إدارة المؤسسات."
+
+msgid "Catalogue complet."
+msgstr "الكتالوج الكامل."
+
+msgid "Statistiques"
+msgstr "الإحصائيات"
+
+msgid "Vue d'ensemble de la plateforme."
+msgstr "نظرة عامة على المنصة."
+
+msgid "Messagerie"
+msgstr "المراسلة"
+
+msgid "Toutes les conversations."
+msgstr "جميع المحادثات."
+
+msgid "Mes enfants"
+msgstr "أطفالي"
+
+msgid "Voir et gérer les profils de vos enfants."
+msgstr "عرض وإدارة ملفات أطفالك."
+
+msgid "Lettres, chiffres, langues, prophètes…"
+msgstr "الحروف والأرقام واللغات والأنبياء…"
+
+msgid "Suivi des progrès"
+msgstr "متابعة التقدم"
+
+msgid "Évolution de vos enfants en temps réel."
+msgstr "تطور أطفالك في الوقت الفعلي."
+
+msgid "Santé"
+msgstr "الصحة"
+
+msgid "Carnet de santé et rendez-vous médicaux."
+msgstr "دفتر الصحة والمواعيد الطبية."
+
+msgid "Communication avec la crèche."
+msgstr "التواصل مع الحضانة."
+
+msgid "Activités"
+msgstr "الأنشطة"
+
+msgid "Programme et événements à venir."
+msgstr "البرنامج والفعاليات القادمة."
+
+msgid "Ma crèche"
+msgstr "حضانتي"
+
+msgid "Informations et configuration."
+msgstr "المعلومات والإعدادات."
+
+msgid "Enfants inscrits"
+msgstr "الأطفال المسجلون"
+
+msgid "Liste des enfants de la crèche."
+msgstr "قائمة أطفال الحضانة."
+
+msgid "Équipe éducative"
+msgstr "الفريق التربوي"
+
+msgid "Gestion des éducateurs."
+msgstr "إدارة المربين."
+
+msgid "Catalogue d'apprentissage."
+msgstr "كتالوج التعلم."
+
+msgid "Suivi pédagogique"
+msgstr "المتابعة التربوية"
+
+msgid "Progrès de tous les enfants."
+msgstr "تقدم جميع الأطفال."
+
+msgid "Communication avec les parents."
+msgstr "التواصل مع الأولياء."
+
+msgid "Mes élèves"
+msgstr "تلاميذي"
+
+msgid "Enfants dont vous avez la charge."
+msgstr "الأطفال الذين تتولى رعايتهم."
+
+msgid "Programme pédagogique."
+msgstr "البرنامج التربوي."
+
+msgid "Évaluations"
+msgstr "التقييمات"
+
+msgid "Suivi des progrès et évaluations."
+msgstr "متابعة التقدم والتقييمات."
+
+msgid "Activités du jour"
+msgstr "أنشطة اليوم"
+
+msgid "Planning des activités."
+msgstr "جدول الأنشطة."
+
+msgid "Communication parents et équipe."
+msgstr "التواصل بين الأولياء والفريق."
+
+msgid "Découvrez le catalogue."
+msgstr "اكتشف الكتالوج."
+
+#: templates/pages/home.html
+msgid "Little Future — La crèche intelligente, magique et sécurisée"
+msgstr "ليتل فيوتشر — الحضانة الذكية والسحرية والآمنة"
+
+msgid "✨ La crèche du futur est arrivée"
+msgstr "✨ حضانة المستقبل وصلت"
+
+msgid "Apprendre, grandir et"
+msgstr "التعلم والنمو و"
+
+msgid "s'émerveiller"
+msgstr "الاندهاش"
+
+msgid "dans un univers"
+msgstr "في عالم"
+
+msgid "magique"
+msgstr "سحري"
+
+msgid "Notre Projet \"Little Future\" est la plateforme tout-en-un pour les crèches modernes : éducation 3D interactive, suivi santé complet, évaluation quotidienne, et communication en temps réel entre parents et professionnels (Nesrine & Feriel vous accompagnent)."
+msgstr "مشروعنا \"ليتل فيوتشر\" هو المنصة الشاملة لدور الحضانة الحديثة: تعليم تفاعلي ثلاثي الأبعاد، متابعة صحية كاملة، تقييم يومي، وتواصل لحظي بين الأولياء والمختصين (نسرين وفريال ترافقانكم)."
+
+msgid "Commencer maintenant"
+msgstr "ابدأ الآن"
+
+msgid "Découvrir"
+msgstr "اكتشف"
+
+msgid "Crèches partenaires"
+msgstr "دور الحضانة الشريكة"
+
+msgid "Enfants accompagnés"
+msgstr "الأطفال المرافَقون"
+
+msgid "Parents satisfaits"
+msgstr "الأولياء الراضون"
+
+msgid "Nos services"
+msgstr "خدماتنا"
+
+msgid "Tout ce dont une crèche moderne a besoin"
+msgstr "كل ما تحتاجه الحضانة الحديثة"
+
+msgid "Une plateforme unique pour les parents, les responsables et les éducateurs."
+msgstr "منصة موحدة للأولياء والمسؤولين والمربين."

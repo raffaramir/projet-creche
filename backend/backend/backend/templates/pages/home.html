@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Little Future — La crèche intelligente, magique et sécurisée" %}{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg">
+        <span class="floaty f1"></span>
+        <span class="floaty f2"></span>
+        <span class="floaty f3"></span>
+        <span class="floaty f4"></span>
+        <span class="sparkle s1">✦</span>
+        <span class="sparkle s2">✧</span>
+        <span class="sparkle s3">✦</span>
+    </div>
+
+    <div class="container hero-grid">
+        <div class="hero-copy reveal">
+            <span class="eyebrow">{% trans "✨ La crèche du futur est arrivée" %}</span>
+            <h1 class="hero-title">
+                {% trans "Apprendre, grandir et" %} <span class="grad">{% trans "s'émerveiller" %}</span>
+                <br />{% trans "dans un univers" %} <span class="grad-2">{% trans "magique" %}</span>.
+            </h1>
+            <p class="hero-sub">
+                {% trans "Notre Projet \"Little Future\" est la plateforme tout-en-un pour les crèches modernes : éducation 3D interactive, suivi santé complet, évaluation quotidienne, et communication en temps réel entre parents et professionnels (Nesrine & Feriel vous accompagnent)." %}
+            </p>
+            <div class="hero-cta">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-xl">
+                    {% trans "Commencer maintenant" %}
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a href="#fonctionnalites" class="btn btn-outline btn-xl">{% trans "Découvrir" %}</a>
+            </div>
+            <div class="hero-stats">
+                <div><strong>120+</strong><span>{% trans "Crèches partenaires" %}</span></div>
+                <div><strong>4 800</strong><span>{% trans "Enfants accompagnés" %}</span></div>
+                <div><strong>98%</strong><span>{% trans "Parents satisfaits" %}</span></div>
+            </div>
+        </div>
+
+        <div class="hero-visual reveal">
+            <div class="orb orb-main">
+                <div class="orb-inner">🧸</div>
+            </div>
+            <div class="orb orb-a">📚</div>
+            <div class="orb orb-b">🎨</div>
+            <div class="orb orb-c">🩺</div>
+            <div class="orb orb-d">💬</div>
+            <div class="orb orb-e">⭐</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">{% trans "Nos services" %}</span>
+            <h2>{% trans "Tout ce dont une crèche moderne a besoin" %}</h2>
+            <p>{% trans "Une plateforme unique pour les parents, les responsables et les éducateurs." %}</p>
+        </header>
+
+        <div class="grid grid-3">
+            <article class="card reveal">
+                <div class="card-icon">🎓</div>
+                <h3>Éducation 3D</h3>
+                <p>Lettres, chiffres, langues et histoires des prophètes dans des univers 3D interactifs adaptés à chaque âge.</p>
+            </article>
+            <article class="card reveal">
+                <div class="card-icon">👨‍👩‍👧</div>
+                <h3>Suivi parental 3D</h3>
+                <p>Visualisez en temps réel et en 3D la progression de votre enfant. Analytics intelligents et rapports clairs.</p>
+            </article>
+            <article class="card reveal">
+                <div class="card-icon">🏥</div>
+                <h3>Santé complète</h3>
+                <p>Médicaments, allergies, régimes, vaccinations : un dossier médical numérique sécurisé pour chaque enfant.</p>
+            </article>
+            <article class="card reveal">
+                <div class="card-icon">📊</div>
+                <h3>Évaluation quotidienne</h3>
+                <p>Humeur, repas, sommeil, comportement, apprentissages : un suivi quotidien transmis automatiquement aux parents.</p>
+            </article>
+            <article class="card reveal">
+                <div class="card-icon">💬</div>
+                <h3>Messagerie en direct</h3>
+                <p>Chat texte et live entre parents et crèche, avec espace dédié aux conseils médicaux et pharmaceutiques.</p>
+            </article>
+            <article class="card reveal">
+                <div class="card-icon">🛡️</div>
+                <h3>Sécurité & confidentialité</h3>
+                <p>Validation administrateur, contrôle d'accès par rôle, chiffrement et conformité RGPD au cœur du produit.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES SHOWCASE -->
+<section id="fonctionnalites" class="section section-alt">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">Fonctionnalités</span>
+            <h2>Une expérience pensée pour les enfants, conçue pour les parents</h2>
+        </header>
+
+        <div class="feature-row reveal">
+            <div class="feature-text">
+                <h3>🎮 Apprentissage 3D immersif</h3>
+                <p>Plongez votre enfant dans un univers magique où chaque lettre devient une aventure et chaque chiffre une découverte. Animations Three.js, interactions tactiles et progression personnalisée.</p>
+                <ul class="check-list">
+                    <li>Lettres, chiffres et alphabets multiples</li>
+                    <li>Histoires des prophètes en 3D</li>
+                    <li>Adapté de 18 mois à 6 ans</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="device">
+                    <div class="device-screen">
+                        <div class="mini-3d">
+                            <span class="cube"></span>
+                            <span class="ring r1"></span>
+                            <span class="ring r2"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-row reverse reveal">
+            <div class="feature-text">
+                <h3>📈 Tableau de bord parents</h3>
+                <p>Suivez tout ce qui compte : progression, humeur, repas, siestes, activités. Recevez des rapports hebdomadaires automatiques et célébrez chaque réussite.</p>
+                <ul class="check-list">
+                    <li>Visualisation 3D des progrès</li>
+                    <li>Rapports automatiques hebdomadaires</li>
+                    <li>Notifications en temps réel</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="device">
+                    <div class="device-screen dash-mock">
+                        <div class="bar b1"></div>
+                        <div class="bar b2"></div>
+                        <div class="bar b3"></div>
+                        <div class="bar b4"></div>
+                        <div class="bar b5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW TO REGISTER -->
+<section id="inscription" class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">S'inscrire</span>
+            <h2>Trois étapes pour rejoindre Little Future</h2>
+        </header>
+        <div class="steps">
+            <div class="step reveal">
+                <span class="step-num">1</span>
+                <h4>Créer un compte</h4>
+                <p>Parents ou responsables de crèche : choisissez votre profil et remplissez le formulaire sécurisé.</p>
+            </div>
+            <div class="step reveal">
+                <span class="step-num">2</span>
+                <h4>Validation administrateur</h4>
+                <p>Notre équipe vérifie chaque inscription pour garantir un environnement de confiance.</p>
+            </div>
+            <div class="step reveal">
+                <span class="step-num">3</span>
+                <h4>Accéder à la plateforme</h4>
+                <p>Connectez-vous, ajoutez votre enfant ou votre crèche et profitez de toutes les fonctionnalités.</p>
+            </div>
+        </div>
+        <div class="center reveal">
+            <a href="{% url 'register' %}" class="btn btn-primary btn-xl">Créer mon compte</a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="a-propos" class="section section-alt">
+    <div class="container about-grid">
+        <div class="reveal">
+            <span class="eyebrow">À propos de nous</span>
+            <h2>Notre mission : éveiller les génies de demain</h2>
+            <p>Little Future réunit éducateurs, parents et technologues autour d'une idée simple : offrir à chaque enfant un environnement magique pour apprendre, en toute sécurité.</p>
+            <p>Notre plateforme combine pédagogie scientifique, design enfantin premium et technologies immersives pour créer la crèche du futur — accessible aujourd'hui.</p>
+            <a href="{% url 'about' %}" class="btn btn-outline">En savoir plus</a>
+        </div>
+        <div class="about-stats reveal">
+            <div class="stat-card"><strong>15+</strong><span>Quartiers</span></div>
+            <div class="stat-card"><strong>120+</strong><span>Crèches</span></div>
+            <div class="stat-card"><strong>4 800</strong><span>Enfants</span></div>
+            <div class="stat-card"><strong>24/7</strong><span>Support</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- SECURITY -->
+<section id="securite" class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">🛡️ Sécurité & confidentialité</span>
+            <h2>La confiance, au cœur de Little Future</h2>
+        </header>
+        <div class="grid grid-3">
+            <div class="card reveal"><div class="card-icon">🔐</div><h3>Chiffrement</h3><p>Toutes les communications sont chiffrées en transit et au repos.</p></div>
+            <div class="card reveal"><div class="card-icon">👮</div><h3>RGPD</h3><p>Vos données sont hébergées en toute sécurité. Droit à l'oubli garanti.</p></div>
+            <div class="card reveal"><div class="card-icon">✅</div><h3>Validation manuelle</h3><p>Chaque crèche et chaque parent est vérifié avant l'accès à la plateforme.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="equipe" class="section section-alt">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">Notre équipe</span>
+            <h2>Des passionnés au service des enfants</h2>
+            <p>Des éducateurs, ingénieurs et designers unis autour d'une mission commune.</p>
+        </header>
+        <div class="team-grid">
+            <article class="team-card reveal">
+                <div class="team-photo" style="background-image: url('{% static "img/amir.jpg" %}');"></div>
+                <h4>Dr Raffar El Amir Abdelkader</h4>
+                <span> professeur Encadrant Principal - Concepteur, Développeur et Programmeur du Projet</span>
+            </article>
+            <article class="team-card reveal">
+                <div class="team-photo" style="background-image: url('{% static "img/taleb.jpg" %}');"></div>
+                <h4>Pr Taleb Chahinez Soumia</h4>
+                <span>   co-encadrante </span>
+            </article>
+            <article class="team-card reveal">
+                <div class="team-photo" style="background-image: url('{% static "img/team-3.jpg" %}');"></div>
+                <h4>Taiouche Nesrine</h4>
+                <span>Etudiante en Master 02 Economie Numérique</span>
+            </article>
+            <article class="team-card reveal">
+                <div class="team-photo" style="background-image: url('{% static "img/team-4.jpg" %}');"></div>
+                <h4>Hagoug Feriel amina</h4>
+                <span>Etudiante en Master 02 Economie Numérique</span>
+            </article>
+        </div>
+        <p class="muted center">📷 Pour ajouter vos photos d'équipe, déposez-les dans <code>backend/static/img/</code> sous les noms <code>team-1.jpg</code> à <code>team-4.jpg</code>.</p>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="temoignages" class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">Témoignages</span>
+            <h2>Ils nous font confiance</h2>
+        </header>
+        <div class="grid grid-3">
+            <article class="testimonial reveal">
+                <p>« Mon fils adore les histoires en 3D. Et moi je sais tout ce qu'il fait à la crèche, en temps réel. Magique ! »</p>
+                <footer>— Sarah, maman de Liam</footer>
+            </article>
+            <article class="testimonial reveal">
+                <p>« Little Future a transformé notre crèche. Les parents adorent les rapports quotidiens et nous gagnons un temps fou. »</p>
+                <footer>— Mme Renaud, directrice de crèche</footer>
+            </article>
+            <article class="testimonial reveal">
+                <p>« Le suivi santé est exceptionnel. Allergies, médicaments, vaccinations… tout est centralisé et clair. »</p>
+                <footer>— Dr. Khaled, pédiatre partenaire</footer>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section section-alt">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">Questions fréquentes</span>
+            <h2>Vos réponses, en un clic</h2>
+        </header>
+        <div class="faq">
+            <details class="reveal">
+                <summary>L'inscription est-elle gratuite ?</summary>
+                <p>L'inscription des parents est gratuite. Les crèches choisissent une formule adaptée à leur structure.</p>
+            </details>
+            <details class="reveal">
+                <summary>Comment mes données sont-elles protégées ?</summary>
+                <p>Toutes les données sont chiffrées et hébergées en Europe, en conformité avec le RGPD.</p>
+            </details>
+            <details class="reveal">
+                <summary>L'application est-elle disponible sur mobile ?</summary>
+                <p>Oui, Little Future est une PWA. Vous pouvez l'installer sur Android et iOS comme une vraie application.</p>
+            </details>
+            <details class="reveal">
+                <summary>Combien de temps prend la validation de mon compte ?</summary>
+                <p>Généralement moins de 24 heures. Vous recevez un email dès que votre compte est activé.</p>
+            </details>
+            <details class="reveal">
+                <summary>Puis-je connecter plusieurs enfants à mon compte parent ?</summary>
+                <p>Bien sûr ! Vous pouvez suivre tous vos enfants depuis le même tableau de bord.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta">
+    <div class="container cta-inner reveal">
+        <h2>Prêt à offrir le meilleur à votre enfant ?</h2>
+        <p>Rejoignez la communauté Little Future et redonnez de la magie à la crèche.</p>
+        <div class="cta-buttons">
+            <a href="{% url 'register_parent' %}" class="btn btn-primary btn-xl">Inscription parent</a>
+            <a href="{% url 'register_manager' %}" class="btn btn-outline btn-xl">Inscription crèche</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

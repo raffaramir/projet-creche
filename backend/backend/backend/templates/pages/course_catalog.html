@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cours 3D — Little Future{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">🎮 Univers 3D</span>
+            <h2>Apprends en t'amusant avec l'educatrice Feriel</h2>
+            <p>Des cours interactifs en 3D adaptés à chaque âge.</p>
+        </header>
+
+        {% if courses %}
+        <div class="grid grid-3">
+            {% for course in courses %}
+            <a href="{% url 'course_detail' course.slug %}" class="course-card reveal">
+                <div class="course-thumb">
+                    <canvas class="course-mini" data-cat="{{ course.category }}"></canvas>
+                    <span class="course-cat">{{ course.get_category_display }}</span>
+                </div>
+                <div class="course-body">
+                    <h3>{{ course.title }}</h3>
+                    <p class="muted">{{ course.description|truncatewords:18 }}</p>
+                    <span class="course-meta">{{ course.age_min_months }}–{{ course.age_max_months }} mois · {{ course.lessons.count }} leçon{{ course.lessons.count|pluralize }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card center">
+            <div class="card-icon">🌱</div>
+            <h3>Aucun cours publié pour le moment</h3>
+            <p>Lancez la commande <code>python manage.py seed_courses</code> pour ajouter des cours d'exemple.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="{% static 'js/course_thumbs.js' %}"></script>
+{% endblock %}

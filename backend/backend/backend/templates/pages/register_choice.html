@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}S'inscrire — Little Future{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="eyebrow">Inscription</span>
+            <h2>Choisissez votre profil</h2>
+        </header>
+        <div class="grid grid-2">
+            <a href="{% url 'register_parent' %}" class="choice-card reveal">
+                <div class="card-icon">👨‍👩‍👧</div>
+                <h3>Je suis parent</h3>
+                <p>Suivez la progression, la santé et la journée de votre enfant en temps réel.</p>
+                <span class="btn btn-primary">Inscription parent →</span>
+            </a>
+            <a href="{% url 'register_manager' %}" class="choice-card reveal">
+                <div class="card-icon">🏫</div>
+                <h3>Je gère une crèche</h3>
+                <p>Modernisez votre crèche : éducation 3D, suivi, santé et messagerie en un seul outil.</p>
+                <span class="btn btn-primary">Inscription crèche →</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
