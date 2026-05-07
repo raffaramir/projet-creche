@@ -61,6 +61,11 @@ p  { color: var(--ink-soft); }
     display: inline-flex; align-items: center; gap: .55rem;
     font-family: var(--font-head); font-weight: 700; font-size: 1.4rem;
 }
+.brand-logo {
+    height: 80px; width: auto; max-width: 240px;
+    display: inline-block; object-fit: contain;
+    object-position: center; flex-shrink: 0;
+}
 .brand-mark {
     display: inline-grid; place-items: center;
     width: 36px; height: 36px; border-radius: 12px;
